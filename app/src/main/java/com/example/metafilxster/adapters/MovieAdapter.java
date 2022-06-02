@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.metafilxster.DetailActivity;
 import com.example.metafilxster.R;
 import com.example.metafilxster.models.Movie;
@@ -79,9 +82,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Viewholder> 
                 imageUrl = movie.getPosterPath();
 
             }
-            //if phone is poster image
+            
             Glide.with(context)
                     .load(imageUrl)
+                    .circleCrop()
                     .placeholder(R.drawable.flicks_movie_placeholder)
                     .into(ivPoster);
         }
