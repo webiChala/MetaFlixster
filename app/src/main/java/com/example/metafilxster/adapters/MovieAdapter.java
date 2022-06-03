@@ -18,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.metafilxster.DetailActivity;
 import com.example.metafilxster.R;
+import com.example.metafilxster.databinding.ItemMovieBinding;
 import com.example.metafilxster.models.Movie;
 
 import org.parceler.Parcels;
@@ -37,9 +38,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Viewholder> 
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
-        return new Viewholder(movieView);
+        ItemMovieBinding itemBinding = ItemMovieBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new Viewholder(itemBinding);
+//        View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
+//        return new Viewholder(movieView);
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
@@ -60,13 +65,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Viewholder> 
         TextView tvOverview;
         ImageView ivPoster;
 
-        public Viewholder(@NonNull View itemView) {
-            super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
-            ivPoster = itemView.findViewById(R.id.ivPoster);
-            itemView.setOnClickListener(this);
+        public Viewholder(ItemMovieBinding itemBinding) {
+            super(itemBinding.getRoot());
+            tvTitle = itemBinding.tvTitle;
+            tvOverview = itemBinding.tvOverview;
+            ivPoster = itemBinding.ivPoster;
+            itemBinding.getRoot().setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
+
+//        public Viewholder(@NonNull View itemView, ItemMovieBinding binding) {
+//            super(itemView);
+//            tvTitle = itemView.findViewById(R.id.tvTitle);
+//            tvOverview = itemView.findViewById(R.id.tvOverview);
+//            ivPoster = itemView.findViewById(R.id.ivPoster);
+//            itemView.setOnClickListener(this);
+//        }
+
+//        MyViewHolder(CommonCircleImageBinding itemBinding) {
+//            super(itemBinding.getRoot());
+//            img = itemBinding.img ;
+//            txt = itemBinding.txt ;
+//        }
 
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.metafilxster.databinding.ActivityDetailBinding;
+import com.example.metafilxster.databinding.ActivityMainBinding;
 import com.example.metafilxster.models.Movie;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -37,22 +40,29 @@ public class DetailActivity extends YouTubeBaseActivity {
     YouTubePlayerView ytPlayerView;
     String videoId;
     public static final String TRAILERS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=b4272cb6c6aa5c05f39e20ddc465756b";
+    private ActivityDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        //setContentView(R.layout.activity_detail);
+        binding = ActivityDetailBinding.inflate(getLayoutInflater());
 
-        tvTitle = (TextView) findViewById(R.id.detailTitle);
-        tvOverview = (TextView) findViewById(R.id.detailOverview);
-        rbVoteAverage = (RatingBar) findViewById(R.id.ratingBar);
-        ytPlayerView = findViewById(R.id.player);
+        // layout of activity is stored in a special property called root
+        View view = binding.getRoot();
+        setContentView(view);
+
+        tvTitle = binding.detailTitle;
+        tvOverview = binding.detailOverview;
+        rbVoteAverage = binding.ratingBar;
+        ytPlayerView = binding.player;
 
         videoId = "tKodtNFpzBA";
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("DetailActivity", String.format("Showing details for '%s'", movie.getTitle()));
         String getVideoUrl = String.format("https://api.themoviedb.org/3/movie/%d/videos?api_key=b4272cb6c6aa5c05f39e20ddc465756b", movie.getId());
         AsyncHttpClient client = new AsyncHttpClient();
+
         client.get(getVideoUrl, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {

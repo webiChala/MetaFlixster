@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.metafilxster.adapters.MovieAdapter;
+import com.example.metafilxster.databinding.ActivityDetailBinding;
+import com.example.metafilxster.databinding.ActivityMainBinding;
 import com.example.metafilxster.models.Movie;
 
 import org.json.JSONArray;
@@ -25,14 +28,29 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING = "https://api.themoviedb.org/3/movie/now_playing?api_key=b4272cb6c6aa5c05f39e20ddc465756b";
     public static final String TAG = "MainActivity";
+    private ActivityMainBinding binding;
+    RecyclerView rvMovies;
 
     List<Movie> movies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+        // activity_main.xml -> ActivityMainBinding
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        RecyclerView rvMovies = findViewById(R.id.rvMovies);
+        // layout of activity is stored in a special property called root
+        View view = binding.getRoot();
+        setContentView(view);
+
+//        // set bindings more efficiently through bindings
+//        title = binding.title;       // was title = findViewById(R.id.title);
+//        title.setText("My title");
+//
+//        // alternately, access views through binding when needed, instead of variables
+//        binding.title.setText("My title");
+
+        rvMovies = binding.rvMovies;
         movies = new ArrayList<>();
         //Create an adapter
         MovieAdapter movieAdapter = new MovieAdapter(this, movies);
