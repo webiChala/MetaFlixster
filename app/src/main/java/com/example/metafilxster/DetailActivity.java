@@ -30,16 +30,17 @@ import okhttp3.Headers;
 
 public class DetailActivity extends YouTubeBaseActivity {
 
+    private String getVideoUrl;
     // the movie to display
     Movie movie;
     // the view objects
     TextView tvTitle;
+
     TextView tvOverview;
     RatingBar rbVoteAverage;
     ImageView detailPosterImage;
     YouTubePlayerView ytPlayerView;
     String videoId;
-    public static final String TRAILERS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=b4272cb6c6aa5c05f39e20ddc465756b";
     private ActivityDetailBinding binding;
 
     @Override
@@ -60,7 +61,7 @@ public class DetailActivity extends YouTubeBaseActivity {
         videoId = "tKodtNFpzBA";
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("DetailActivity", String.format("Showing details for '%s'", movie.getTitle()));
-        String getVideoUrl = String.format("https://api.themoviedb.org/3/movie/%d/videos?api_key=b4272cb6c6aa5c05f39e20ddc465756b", movie.getId());
+        getVideoUrl = String.format("https://api.themoviedb.org/3/movie/%d/videos?api_key=%s", movie.getId(), getString(R.string.movieDb_api_key));
         AsyncHttpClient client = new AsyncHttpClient();
 
         client.get(getVideoUrl, new JsonHttpResponseHandler() {

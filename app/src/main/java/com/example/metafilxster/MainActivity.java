@@ -25,8 +25,7 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final String NOW_PLAYING = "https://api.themoviedb.org/3/movie/now_playing?api_key=b4272cb6c6aa5c05f39e20ddc465756b";
+    private String NOW_PLAYING;
     public static final String TAG = "MainActivity";
     private ActivityMainBinding binding;
     RecyclerView rvMovies;
@@ -42,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         // layout of activity is stored in a special property called root
         View view = binding.getRoot();
         setContentView(view);
+
+        NOW_PLAYING = String.format("https://api.themoviedb.org/3/movie/now_playing?api_key=%s", getString(R.string.movieDb_api_key));
 
 //        // set bindings more efficiently through bindings
 //        title = binding.title;       // was title = findViewById(R.id.title);
