@@ -18,10 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/player"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:text="TextView"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/detailOverview"
@@ -29,22 +30,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ratingBar"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="17dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="TextView"
         android:textSize="18sp" />
 
     <RatingBar
         android:id="@+id/ratingBar"
-        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/detailTitle"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="56dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="85dp"
         android:layout_toEndOf="@+id/detailTitle"
         android:numStars="5"
         android:rating="4" />

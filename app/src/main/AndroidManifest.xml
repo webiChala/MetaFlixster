@@ -20,6 +20,7 @@
         android:theme="@style/Theme.MetaFilxster"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Theme.MetaFilxster"
             android:name=".DetailActivity"
             android:exported="false" />
         <activity

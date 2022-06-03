@@ -97,17 +97,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Viewholder> 
                 //then imageUrl = back drop image
 
                 imageUrl = movie.getBackdropPath();
+
+                int radius = 20; // corner radius, higher value = more rounded
+
+                Glide.with(context)
+                        .load(imageUrl)
+                        .circleCrop()
+                        .transform(new RoundedCorners(radius))
+
+                        .placeholder(R.drawable.flicks_movie_placeholder)
+                        .into(ivPoster);
             }else{
                 //imageurl = poster image
                 imageUrl = movie.getPosterPath();
+                Glide.with(context)
+                        .load(imageUrl)
+                        .circleCrop()
+                        .placeholder(R.drawable.flicks_movie_placeholder)
+                        .into(ivPoster);
 
             }
 
-            Glide.with(context)
-                    .load(imageUrl)
-                    .circleCrop()
-                    .placeholder(R.drawable.flicks_movie_placeholder)
-                    .into(ivPoster);
+
         }
 
         @Override
