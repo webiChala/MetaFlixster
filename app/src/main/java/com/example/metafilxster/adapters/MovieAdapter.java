@@ -82,7 +82,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Viewholder> 
                 imageUrl = movie.getPosterPath();
 
             }
-            
+
             Glide.with(context)
                     .load(imageUrl)
                     .circleCrop()
